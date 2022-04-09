@@ -1,13 +1,17 @@
 import pygame
 
-color = (200, 168, 90)
+COLOR = (200, 168, 90)
+
 
 class Tile(pygame.sprite.Sprite):
-	def __init__(self,pos,size):
-		super().__init__()
-		self.image = pygame.Surface((size,size))
-		self.image.fill(color)
-		self.rect = self.image.get_rect(topleft = pos)
+	rect: pygame.Rect
 
-	def update(self,x_shift):
+	def __init__(self, pos, size, type_id):
+		super().__init__()
+		self.image = pygame.Surface(size)
+		self.image.fill(COLOR)
+		self.type_id = type_id
+		self.rect = self.image.get_rect(topleft=pos)  # type:ignore
+
+	def update(self, x_shift):
 		self.rect.x += x_shift
